@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Day1 {
+    private static String filePath = "src/main/Java/Day1/input.txt";
 
     public static void main(String[] args) {
         List<Integer> part2 = part2();
@@ -14,7 +15,7 @@ public class Day1 {
     }
 
     public static List<Integer> part2() {
-        List<List<Integer>> input = ReadInputFile.readInputFile();
+        List<List<Integer>> input = ReadInputFile.readInputByColumns(filePath);
         List<Integer> outputList = new ArrayList<>();
 
         for(int i = 0; i < input.get(1).size(); i++) {
@@ -40,7 +41,7 @@ public class Day1 {
     }
 
     public static int part1() {
-        List<List<Integer>> input = ReadInputFile.readInputFile();
+        List<List<Integer>> input = ReadInputFile.readInputByColumns(filePath);
 
         List<Integer> distances = new ArrayList<>();
         for(List<Integer> list : input) {

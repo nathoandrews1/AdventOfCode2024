@@ -4,13 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ReadInputFile {
 
-    public static List<List<Integer>> readInputFile() {
-        String filePath = "src/main/Java/Day1/input.txt";
-
+    public static List<List<Integer>> readInputByColumns(String filePath) {
         List<List<Integer>> columns = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -35,5 +34,28 @@ public class ReadInputFile {
             System.err.println("Error reading the file: " + e.getMessage());
         }
         return columns;
+    }
+
+    public static List<List<Integer>> readInputByRows(String filePath) {
+
+        List<List<Integer>> rows = new ArrayList<>();
+        List<Integer> row = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] numbers = line.trim().split("\\s+");
+                for(String num : numbers) {
+                    row.add(Integer.parseInt(num));
+                }
+
+                rows.add(row);
+                row = new ArrayList<>();
+            }
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+        return rows;
     }
 }
